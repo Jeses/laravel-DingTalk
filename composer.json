@@ -1,5 +1,5 @@
 {
-  "name": "zhengcai/ding-talk",
+  "name": "zhengcai/robot-ding-talk",
   "description": "DingTalk robot message handle for send message for laravel project.. ",
   "version": "1.0.0",
   "keywords": ["laravel", "ding talk", "DingTalk", "Notice"],
@@ -27,10 +27,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Zhengcai\\DingTalk\\DingTalkServiceProvider"
+        "Zhengcai\\RobotDingTalk\\DingTalkServiceProvider"
       ],
       "aliases": {
-        "DingTalk": "Zhengcai\\DingTalk\\Facades\\DingTalk"
+        "DingTalk": "Zhengcai\\RobotDingTalk\\Facades\\DingTalk"
       }
     }
   }

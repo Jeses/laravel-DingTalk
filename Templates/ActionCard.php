@@ -6,9 +6,9 @@
  * @Email :<yz_luck@163.com>
  */
 
-namespace Zhengcai\DingTalk\Templates;
+namespace Zhengcai\RobotDingTalk\Templates;
 
-use Zhengcai\DingTalk\DingTalkService;
+use Zhengcai\RobotDingTalk\DingTalkService;
 
 /**
  * Class ActionCard

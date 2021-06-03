@@ -6,7 +6,7 @@
  * @Email :<yz_luck@163.com>
  */
 
-namespace Zhengcai\DingTalk\Templates;
+namespace Zhengcai\RobotDingTalk\Templates;
 
 /**
  * Class Text

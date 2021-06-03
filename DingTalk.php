@@ -6,7 +6,7 @@
  * @Email :<yz_luck@163.com>
  */
 
-namespace Zhengcai\DingTalk;
+namespace Zhengcai\RobotDingTalk;
 
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;

@@ -6,7 +6,7 @@
  * @Email :<yz_luck@163.com>
  */
 
-namespace Zhengcai\DingTalk\Facades;
+namespace Zhengcai\RobotDingTalk\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
