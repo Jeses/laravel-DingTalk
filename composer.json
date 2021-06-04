@@ -28,6 +28,5 @@
                 "DingTalk": "Zhengcai\\RobotDingTalk\\Facades\\DingTalk"
             }
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
