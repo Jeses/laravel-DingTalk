@@ -9,6 +9,10 @@
 namespace Zhengcai\RobotDingTalk;
 
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
+use Ixudra\Curl\Facades\Curl;
+
 class DingTalk
 {
 	/**
@@ -93,14 +97,14 @@ class DingTalk
 	{
 		$this->sign($data);
 		// 用法：https://github.com/ixudra/curl
-		$curl = Curl::to($this->apiUrl . '/' . trim($api, '/'));
-		App::environment('local') && $curl->enableDebug(storage_path('logs/ssapi-curl.log'));
+		$curl = Curl::to($this->hookUrl . '/' . trim($api, '/'));
+		App::environment('local') && $curl->enableDebug(Storage::path('logs/ssapi-curl.log'));
 		$response = $curl->withData($data)
 			->withHeaders($headers)
 			->asJson()
 			->$method();
 		if (empty($response))
-			throw new \Exception('request fail.');
+			//throw new \Exception('request fail.');
 		return $response;
 	}
 

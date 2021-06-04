@@ -37,7 +37,7 @@ class DingTalkServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->app->singleton('DingTalk', function () {
-			return new DingTalk();
+			return new DingTalkService();
 		}
 		);
 	}
