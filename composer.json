@@ -1,37 +1,37 @@
 {
-  "name": "zhengcai/robot-ding-talk",
-  "description": "DingTalk robot message handle for send message for laravel project.. ",
-  "version": "1.0.0",
-  "keywords": ["laravel", "ding talk", "DingTalk", "Notice"],
-  "homepage": "https://github.com/Jeses/laravel-DingTalk.git",
-  "authors": [
-    {
-      "name": "Zhengcai",
-      "email": "yz_luck@163.com"
-    }
-  ],
-  "license": "MIT",
-  "require": {
-    "php": ">=7.0",
-    "guzzlehttp/guzzle": "^7.3"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^7.5",
-    "mockery/mockery": "^1.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Zhengcai\\DingTalk\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Zhengcai\\RobotDingTalk\\DingTalkServiceProvider"
-      ],
-      "aliases": {
-        "DingTalk": "Zhengcai\\RobotDingTalk\\Facades\\DingTalk"
-      }
-    }
-  }
+    "name": "zhengcai/robot-ding-talk",
+    "description": "DingTalk robot message handle for send message for laravel project.",
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "ixudra/curl": "6.*",
+        "guzzlehttp/guzzle": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "mockery/mockery": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zhengCai",
+            "email": "yz_luck@163.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Zhengcai\\RobotDingTalk\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zhengcai\\RobotDingTalk\\DingTalkServiceProvider"
+            ],
+            "aliases": {
+                "DingTalk": "Zhengcai\\RobotDingTalk\\Facades\\DingTalk"
+            }
+        }
+    },
+    "minimum-stability": "dev"
 }

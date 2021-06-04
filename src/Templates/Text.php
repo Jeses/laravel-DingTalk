@@ -11,7 +11,7 @@ namespace Zhengcai\RobotDingTalk\Templates;
 /**
  * Class Text
  * 消息类型为文本形式
- * @package Zhengcai\DingTalk\Templates
+ * @package Zhengcai\RobotDingTalk\Templates
  * @Date    : 2021/6/3 下午4:23
  * @Author  :青山
  * @Email   :<yz_luck@163.com>

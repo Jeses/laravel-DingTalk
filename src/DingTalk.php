@@ -11,11 +11,11 @@ namespace Zhengcai\RobotDingTalk;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;
 use Ixudra\Curl\Facades\Curl;
-use Zhengcai\DingTalk\Templates\ActionCard;
-use Zhengcai\DingTalk\Templates\FeedCard;
-use Zhengcai\DingTalk\Templates\Link;
-use Zhengcai\DingTalk\Templates\Markdown;
-use Zhengcai\DingTalk\Templates\Text;
+use Zhengcai\RobotDingTalk\Templates\ActionCard;
+use Zhengcai\RobotDingTalk\Templates\FeedCard;
+use Zhengcai\RobotDingTalk\Templates\Link;
+use Zhengcai\RobotDingTalk\Templates\Markdown;
+use Zhengcai\RobotDingTalk\Templates\Text;
 
 class DingTalk
 {

@@ -13,7 +13,7 @@ use Zhengcai\RobotDingTalk\DingTalkService;
 /**
  * Class ActionCard
  * ActionCard类型消息
- * @package Zhengcai\DingTalk\Templates
+ * @package Zhengcai\RobotDingTalk\Templates
  * @Date    : 2021/6/3 下午4:40
  * @Author  :青山
  * @Email   :<yz_luck@163.com>

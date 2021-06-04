@@ -11,7 +11,7 @@ namespace Zhengcai\RobotDingTalk\Templates;
 /**
  * Class Markdown
  * Markdown 类型消息
- * @package Zhengcai\DingTalk\Templates
+ * @package Zhengcai\RobotDingTalk\Templates
  * @Date    : 2021/6/3 下午4:27
  * @Author  :青山
  * @Email   :<yz_luck@163.com>
