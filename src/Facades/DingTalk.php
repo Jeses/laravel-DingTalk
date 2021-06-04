@@ -8,9 +8,10 @@
 
 namespace Zhengcai\RobotDingTalk\Facades;
 
+
 use Illuminate\Support\Facades\Facade;
 
-class DingTalk extends Facede
+class DingTalk extends Facade
 {
 	/**
 	 * @return string
