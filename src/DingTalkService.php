@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * @Date  : 2021/6/3 下午2:55
+ * @Date  : 2021/6/4 下午3:00
  * @Author:青山
  * @Email :<yz_luck@163.com>
  */
@@ -18,11 +18,8 @@ class DingTalkService
 
 	/**
 	 * @param $serverName
-	 * @return mixed
+	 * @return DingTalk
 	 * @throws \Exception
-	 * @Date  : 2021/6/3 下午3:01
-	 * @Author:青山
-	 * @Email :<yz_luck@163.com>
 	 */
 	public function server($serverName)
 	{
@@ -34,5 +31,4 @@ class DingTalkService
 		}
 		return $this->_services[$serverName];
 	}
-
 }

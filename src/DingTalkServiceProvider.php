@@ -1,12 +1,13 @@
 <?php
 /**
  * Created by PhpStorm.
- * @Date  : 2021/6/3 下午2:53
+ * @Date  : 2021/6/4 下午3:02
  * @Author:青山
  * @Email :<yz_luck@163.com>
  */
 
 namespace Zhengcai\RobotDingTalk;
+
 
 use Illuminate\Support\ServiceProvider;
 
@@ -26,7 +27,7 @@ class DingTalkServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		$this->publishes([
-			__DIR__ . '/config/DingTalk.php' => config_path('dingtalk.php'),
+			__DIR__ . '/config/dingtalk.php' => config_path('dingtalk.php'),
 		]);
 	}
 
@@ -36,8 +37,9 @@ class DingTalkServiceProvider extends ServiceProvider
 	public function register()
 	{
 		$this->app->singleton('DingTalk', function () {
-			return new DingTalkService();
-		});
+			return new DingTalk();
+		}
+		);
 	}
 
 	/**
