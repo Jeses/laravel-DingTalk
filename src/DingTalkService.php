@@ -27,7 +27,7 @@ class DingTalkService
 	public function server($serverName)
 	{
 		if (!isset($this->_services[$serverName])) {
-			$config = config('DingTalk.' . $serverName);
+			$config = config('dingtalk.' . $serverName);
 			if (empty($config))
 				throw new \Exception('DingTalk server config is not exist.');
 			$this->_services[$serverName] = new DingTalk($config);

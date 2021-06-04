@@ -34,6 +34,26 @@ class DingTalk
 	protected $accessToken;
 
 	/**
+	 * @var mixed
+	 */
+	protected $enable;
+
+	/**
+	 * @var float|mixed
+	 */
+	protected $timeOut;
+
+	/**
+	 * @var mixed
+	 */
+	protected $sslVerify;
+
+	/**
+	 * @var mixed
+	 */
+	protected $secret;
+
+	/**
 	 * 请求重试次数
 	 * @var int
 	 */
@@ -61,8 +81,12 @@ class DingTalk
 
 	public function __construct(array $config)
 	{
-		if (!$config['token']) return [];
-		$this->accessToken = $config['token'];
+		$this->enable = $config['DING_ENABLED'];
+		$this->accessToken = $config['DING_TOKEN'];
+		$this->timeOut = $config['DING_TIME_OUT'] ?? 2.0;
+		$this->sslVerify = $config['DING_SSL_VERIFY'];
+		$this->secret = $config['DING_SECRET'];
+
 		$this->client = $this->creatClient();
 	}
 
@@ -76,7 +100,7 @@ class DingTalk
 	protected function creatClient()
 	{
 		$clent = new Client([
-			'timeout' => $this->config['timeOut'] ?? 2.0,
+			'timeout' => $this->timeOut,
 		]);
 		return $clent;
 	}
@@ -244,7 +268,7 @@ class DingTalk
 		$request = $this->client->$method($this->hookUrl, [
 			'body'    => json_encode($params),
 			'headers' => $headers,
-			'verify'  => $this->config['sslVerify'] ?? true,
+			'verify'  => $this->sslVerify,
 		]);
 
 		$result = $request->getBody()->getContents();
@@ -263,12 +287,12 @@ class DingTalk
 		if (isset($data['sign']))
 			unset($data['sign']);
 
-		$query['access_token'] = $this->accessToken;
-		if (isset($this->config['secret']) && $secret = $this->config['secret']) {
+		$data['access_token'] = $this->accessToken;
+		if (isset($this->secret) && $secret = $this->secret) {
 			$timestamp = time() . sprintf('%03d', rand(1, 999));
 			$sign = hash_hmac('sha256', $timestamp . "\n" . $secret, $secret, true);
-			$query['timestamp'] = $timestamp;
-			$query['sign'] = base64_encode($sign);
+			$data['timestamp'] = $timestamp;
+			$data['sign'] = base64_encode($sign);
 		}
 	}
 
