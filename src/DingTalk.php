@@ -175,15 +175,17 @@ class DingTalk
 	}
 
 	/**
-	 * 消息类型固定为FeedCard类型
+	 * 消息类型为固定点击singleTitle按钮触发的URL
+	 * @param string $title 按钮标题
+	 * @param string $url   点击按钮触发的URL
 	 * @return $this
-	 * @Date  : 2021/6/4 下午5:09
+	 * @Date  : 2021/6/3 下午6:02
 	 * @Author:青山
 	 * @Email :<yz_luck@163.com>
 	 */
-	public function feedCard()
+	public function addSingle($title = '', $url = '')
 	{
-		$this->message = new FeedCard();
+		if (!empty($this->message)) $this->message->single($title, $url);
 		return $this;
 	}
 
@@ -192,13 +194,13 @@ class DingTalk
 	 * @param string $title 按钮标题
 	 * @param string $url   点击按钮触发的URL
 	 * @return $this
-	 * @Date  : 2021/6/3 下午6:02
+	 * @Date  : 2021/6/4 下午6:19
 	 * @Author:青山
 	 * @Email :<yz_luck@163.com>
 	 */
-	public function actionSingle($title = '', $url = '')
+	public function addButton($title = '', $url = '')
 	{
-		if (!empty($this->message)) $this->message->single($title, $url);
+		if (!empty($this->message)) $this->message->addButtons($title, $url);
 		return $this;
 	}
 
