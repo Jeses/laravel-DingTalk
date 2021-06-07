@@ -11,8 +11,7 @@ robot-ding-talk 是一款钉钉机器人消息发送的Laravel扩展，您可以
 - laravel版本: Laravel5.5+
 - composer版本: 2.0+
 
-
-## Installation
+# 在laravel项目中使用
 
 通过Composer把这个包载入。
 
@@ -31,15 +30,8 @@ robot-ding-talk 是一款钉钉机器人消息发送的Laravel扩展，您可以
 
 然后复制配置文件
 
-`php artisan vendor:publish --provider="Zhengcai\RobotDingTalk\DingTalkServiceProvider`
+`php artisan vendor:publish --provider="Zhengcai\RobotDingTalk\DingTalkServiceProvider"`
 
-# 在laravel项目中使用
-
-安装成功后执行
-```php
-php artisan vendor:publish --provider="DingNotice\DingNoticeServiceProvider"
-
-```
 会自动将`dingtalk.php`配置文件，添加到您项目的配置文件当中
 
 # 相关配置
