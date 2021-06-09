@@ -9,6 +9,7 @@
 namespace Zhengcai\RobotDingTalk;
 
 
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;
 use Ixudra\Curl\Facades\Curl;
 use Zhengcai\RobotDingTalk\Templates\ActionCard;
@@ -33,6 +34,7 @@ class DingTalk
 	 * @var string
 	 */
 	protected $token;
+	protected $client;
 
 	/**
 	 * 超时时间
@@ -80,6 +82,10 @@ class DingTalk
 		$this->timeOut = $config['timeOut'] ?? 2.0;
 		$this->sslVerify = $config['sslVerify'] ?? false;
 		$this->appSecret = $config['secret'] ?? false;
+
+		$this->client = new Client([
+			'timeout' => $this->timeOut,
+		]);
 	}
 
 	/**
@@ -96,19 +102,18 @@ class DingTalk
 			throw new \Exception('undefined method.');
 
 		//组装参数
-		$params = $this->message->getBody();
-		$this->sign($params);
+		$params = !empty($this->message) ? $this->message->getBody() : $this->getBody();
 
-		// 用法：https://github.com/ixudra/curl
-		$curl = Curl::to($this->apiUrl.'?access_token='.$this->token);
-		App::environment('local') && $curl->enableDebug(storage_path('logs/ssapi-curl.log'));
-		$response = $curl->withData($params)
-			->withHeaders($headers)
-			->asJson()
-			->$method();
-		if (empty($response))
-			throw new \Exception('request fail.');
-		return $response;
+		$request = $this->client->post($this->getRobotUrl($params), [
+			'body' => json_encode($params),
+			'headers' => [
+				'Content-Type' => 'application/json',
+			],
+			'verify' => $this->config['ssl_verify'] ?? true,
+		]);
+
+		$result = $request->getBody()->getContents();
+		return json_decode($result, true) ?? [];
 	}
 
 	/**
@@ -280,18 +285,48 @@ class DingTalk
 	 * @param $data
 	 * @return string
 	 */
-	public function sign(&$data)
+	public function getRobotUrl($data)
 	{
 		if (isset($data['sign']))
 			unset($data['sign']);
 
 		$data['access_token'] = $this->token;
-		if (isset($this->secret) && $secret = $this->secret) {
+		if (isset($this->appSecret) && $secret = $this->appSecret) {
 			$timestamp = time() . sprintf('%03d', rand(1, 999));
-			$sign = hash_hmac('sha256', $timestamp . "\n" . $secret, $secret, true);
+			$sign      = hash_hmac('sha256', $timestamp . "\n" . $secret, $secret, true);
 			$data['timestamp'] = $timestamp;
 			$data['sign'] = base64_encode($sign);
 		}
+
+		return $this->apiUrl . "?" . http_build_query($data);
+	}
+
+	public function makeAt()
+	{
+		$this->atList = [
+			'at' => [
+				'isAtAll' => $this->isAtAll,
+			],
+		];
+		if (!empty($this->atMobiles))
+			$this->atList['at']['atMobiles'] = $this->atMobiles;
+		if (!empty($this->atUserIds))
+			$this->atList['at']['atUserIds'] = $this->atUserIds;
+
+		return $this;
+	}
+
+	/**
+	 * 组装主要数据
+	 * @return array
+	 * @Date  : 2021/6/3 下午4:20
+	 * @Author:青山
+	 * @Email :<yz_luck@163.com>
+	 */
+	public function getBody()
+	{
+		$this->makeAt();
+		return $this->message + $this->atList;
 	}
 
 }
