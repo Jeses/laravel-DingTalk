@@ -113,6 +113,24 @@ abstract class Base
 		return $this;
 	}
 
+	public function justData()
+	{
+		$array = [];
+		if (!empty($this->atMobiles)) $array = array_merge($array,$this->atMobiles);
+		if (!empty($this->atUserIds)) $array = array_merge($array,$this->atUserIds);
+		if ($this->message['msgtype'] == 'text' && !empty($array)) {
+			foreach ($array as $user) {
+				$this->message['text']['content'] .= ' @' . $user;
+			}
+		} elseif ($this->message['msgtype'] == 'markdown' && !empty($array)) {
+			$this->message['markdown']['text'] .= "\n\n";
+			foreach ($array as $user) {
+				$this->message['markdown']['text'] .= ' @' . $user;
+			}
+			$this->message['markdown']['text'] .= "\n";
+		}
+	}
+
 	/**
 	 * 组装主要数据
 	 * @return array
@@ -123,6 +141,7 @@ abstract class Base
 	public function getBody()
 	{
 		$this->makeAt();
+		$this->justData();
 		return $this->message + $this->atList;
 	}
 }
